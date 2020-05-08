@@ -9,18 +9,41 @@
 </head>
   <body>
     <h1>Notification</h1>
+    <pre>
+      <code>
+        document.getElementById('notice').addEventListener('click', _ => {
+          if (window.Notification) {
+            Notification.requestPermission();
+            const notification = new Notification('有新通知', {
+              body: `来自***的通知...`,
+              silent: true, // 通知出现是否提示音
+              // sound: '', // 定义通知出现时的声音资源
+              icon: 'https://avatars2.githubusercontent.com/u/15223841?s=96&v=4'
+            });
+            notification.onclick = (event) => {
+              window.open('http://www.deathghost.cn', 'DeathGhost');
+              window.focus();
+              notification.close();
+            };
+          } else {
+            this._message.warning('对不起，你的浏览器不支持Web Notification！');
+          }
+        })
+      </code>
+    </pre>
     <button id="notice">通知</button>
     <script>
       document.getElementById('notice').addEventListener('click', _ => {
         if (window.Notification) {
           Notification.requestPermission();
-          const notification = new Notification('有新来电', {
-            body: `来自***的来电...`,
+          const notification = new Notification('有新通知', {
+            body: `来自***的通知...`,
             silent: true, // 通知出现是否提示音
             // sound: '', // 定义通知出现时的声音资源
             icon: 'https://avatars2.githubusercontent.com/u/15223841?s=96&v=4'
           });
           notification.onclick = (event) => {
+            window.open('http://www.deathghost.cn', 'DeathGhost');
             window.focus();
             notification.close();
           };
